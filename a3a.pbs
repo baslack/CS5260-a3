@@ -1,0 +1,14 @@
+#!/bin/sh -login
+#PBS -l mem=1024mb
+#PBS -l walltime=00:10:00
+#PBS -j oe
+
+#automatically calculate the number of cores
+NP=$(cat ${PBS_NODEFILE} | wc -l)
+
+module load openmpi/gnu/1.7.3
+
+#cd into our working directory
+cd ~/a3
+
+./a33 $1 $2 $3 -h $4;
